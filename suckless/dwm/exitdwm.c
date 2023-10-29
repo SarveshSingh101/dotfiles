@@ -22,9 +22,9 @@ void exitdwm ()
 # endif
 
 # define S_LOCK "Lock"
-# define S_RESTART_DWM "restart Dwm"
+# define S_RESTART_DWM "Restart Dwm"
 # define S_OFFSCREEN "Off-screen"
-# define S_EXIT "Exit"
+# define S_EXIT "Logout"
 # define S_REBOOT "Reboot"
 # define S_SHUTDOWN "Shutdown"
 # define S_LOCK_ICON "\uf023"			// <= FontAwesome icons

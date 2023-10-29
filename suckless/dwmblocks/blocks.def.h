@@ -5,14 +5,14 @@ static const Block blocks[] = {
     {
         " ",
         "if bluetoothctl info 08:EB:ED:F1:19:4A | grep -q 'Connected: yes'; then echo \":$(bluetoothctl info 08:EB:ED:F1:19:4A | awk '/Name:/ {print $2, $3}')\"; else echo \":OFF\"; fi",
-        10,
+        5,
         0
     },
     /* Wi-Fi status */
     {
         " ",
         "nmcli -t -f name connection show --active",
-        10,
+        5,
         0
     },
  /* Wi-Fi status */
