@@ -1,17 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const unsigned int gappih    = 5;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 5;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 5;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = 4;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 4;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 4;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 4;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-#define ICONSIZE 16   /* icon size */
+#define ICONSIZE 32   /* icon size */
 #define ICONSPACING 5 /* space between icon and title */
 static const char *fonts[]          = { "Hack:size=16" };
 static const char dmenufont[]       = "Hack:size=16";
@@ -107,6 +107,8 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *codecmd[]  = { "code", NULL };
 static const char *browsecmd[]  = { "firefox", NULL };
 static const char *pcmanfmcmd[]  = { "pcmanfm", NULL };
+static const char *layoutmenu_cmd = "layoutmenu.sh"; /* layout menu */
+static const char *rclickcmd[] = { "rclick.sh", NULL }; /* desktop right-click menu */
 
 #include "exitdwm.c"
 static Key keys[] = {
@@ -156,7 +158,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_s,      show,           {0} },
+	{ MODKEY,                       XK_s,      show,           {0} },
 	{ MODKEY|ShiftMask,             XK_s,      showall,        {0} },
 	{ MODKEY|ShiftMask,             XK_h,      hide,           {0} },
 	{ MODKEY,            		    XK_y,  	   togglescratch,  {.ui = 0 } },
@@ -179,6 +181,8 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
+  { ClkLtSymbol,          0,              Button1,        layoutmenu,     {0} },	
+	{ ClkRootWin,           0,              Button3,        spawn,          {.v = rclickcmd } },
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },

@@ -13,6 +13,9 @@ export PAGER=less
 export TERMINAL=kitty
 export BROWSER=firefox
 export PATH=$HOME/scripts:$PATH
+export FZF_TMUX_OPTS="-p"
+export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
 
 #Alias
 alias ls='exa -al --header --icons  --group-directories-first --color=auto'
@@ -21,7 +24,6 @@ alias vim=nvim
 alias ZZ='exit'
 alias cd='z'
 alias zz='z -'
-alias v=nvim
 alias e=nvim
 alias c..='cd ..'
 alias ..='cd ..'
@@ -41,6 +43,7 @@ alias ff="fd . --hidden | fzf | tr -d '\n' | xclip -selection c"
 alias b='vim ~/.bashrc'
 alias s='source ~/.bashrc'
 alias y='ytfzf -t '
+alias v="fd --type f --hidden --exclude .config/Code --exclude .vscode --exclude .cargo --exclude .mozilla --exclude .local  --exclude .npm --exclude .cache --exclude .git | fzf --preview 'bat {1}' --reverse | xargs nvim"
 
 # Colour codes
 RED="\\[\\e[1;31m\\]"
